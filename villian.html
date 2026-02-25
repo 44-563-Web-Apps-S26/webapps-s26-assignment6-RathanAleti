@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
-<title>Villains by Rathan Aleti</title>
+<head>
+  <title>Villains by Rathan Aleti</title>
+</head>
+
 <body>
 
 <h1>Villains by Rathan Aleti</h1>
 
 <form>
-  <label for="secret">Funny Man:</label>
+  <label>Funny Man:</label>
   <input type="password" id="secret" value="Joker">
   <br><br>
 
-  <label for="guess">Guess the villain:</label>
+  <label>Guess the villain:</label>
   <input type="text" id="guess">
   <br><br>
 
@@ -19,59 +22,58 @@
 
 <p id="output"></p>
 
-<h2>Getting input</h2>
-
-<form>
-    <label for="form1_age">What is your age </label>
-    <input type ="number" id="form1_age" name="form1_age" min=10 max=50 step=2 value=30> <br>
-
-    <label for="form1_nick">What is your nickname </label>
-    <input type ="text" id="form1_nick" name="form1_nick" autofocus> <br>
-
-    <input type="button" onclick="resolveForm()" value="Get values from form">
-</form>
-
-
-<p id="result">This text will be replaced </p>
-
-<script> 
-
-function resolveForm (){
-    console.log("Getting form values")
-    age = document.getElementById("form1_age").value
-    nick = document.getElementById("form1_nick").value
-    confirmed = confirm("Are these the values? "+age+" and "+nick)
-    
-    out = document.getElementById("result")
-    if(confirmed){
-        out.innerHTML = "Values were confirmed"
-    } else {
-        out.innerHTML = "Values were not confirmed"
-    }
-}
-</script>
+<!-- Image Section (Part 4) -->
+<div>
+  <img id="treePic" src="TreeImage01.jpeg" width="150" height="150" onclick="updatePic()">
+</div>
 
 <script>
-  var caught = 0;
-  var gotAway = 0;
 
-  function checkVillain() {
+var caught = 0;
+var gotAway = 0;
+var usePic = 1;
 
-    var secretValue = document.getElementById("secret").value;
-    var guessValue = document.getElementById("guess").value;
+function checkVillain() {
 
-    if (secretValue === guessValue) {
-      caught = caught + 1;
-      alert("You caught them");
-    } else {
-      gotAway = gotAway + 1;
-      alert("Maybe next time");
-    }
+  var secretValue = document.getElementById("secret").value;
+  var guessValue = document.getElementById("guess").value;
 
-    document.getElementById("output").innerHTML =
-      "Caught: " + caught + " | Got Away: " + gotAway;
+  if (secretValue === guessValue) {
+    caught++;
+    alert("You caught them");
+  } else {
+    gotAway++;
+    alert("Maybe next time");
   }
+
+  document.getElementById("output").innerHTML =
+    "Caught: " + caught + " | Got Away: " + gotAway;
+}
+
+function updatePic() {
+
+  var image = document.getElementById("treePic");
+
+  switch(usePic) {
+
+    case 1:
+      image.src = "TreeImage02.jpeg";
+      usePic = 2;
+      break;
+
+    case 2:
+      image.src = "TreeImage03.jpeg";
+      usePic = 3;
+      break;
+
+    case 3:
+      image.src = "TreeImage01.jpeg";
+      usePic = 1;
+      break;
+  }
+}
+
 </script>
 
 </body>
-</html> 
+</html>
