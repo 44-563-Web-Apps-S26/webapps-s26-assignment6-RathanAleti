@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Rathan Reddy travel planner</title>
+</head>
+
+<body>
+
+<h1>Rathan Reddy travel planner</h1>
+
+<!-- Checkbox Form -->
+<form>
+
+  <input type="checkbox" id="cari" value="True">
+  <label>Caribbean</label><br>
+
+  <input type="checkbox" id="medi" value="True">
+  <label>Mediterranean</label><br>
+
+  <input type="checkbox" id="balt" value="False">
+  <label>Baltic</label><br><br>
+
+  <button type="button" onclick="choices()">Cruise Choices</button>
+
+</form>
+
+<br>
+
+<!-- City Form -->
+<form>
+
+  <label>Enter starting city</label>
+  <input type="text" id="startCity" value="Athens">
+  <br><br>
+
+  <label>Enter ending city</label>
+  <input type="text" id="endCity">
+  <br><br>
+
+  <button type="button" onclick="updateTrip()">Update the trip</button>
+
+</form>
+
+<p id="tripOutput"></p>
+
+<script>
+
+var my_trip = {};
+
+function choices() {
+
+  my_trip = {};
+
+  if (document.getElementById("cari").checked) {
+    my_trip.cari = document.getElementById("cari").value;
+  } else {
+    my_trip.cari = "False";
+  }
+
+  if (document.getElementById("medi").checked) {
+    my_trip.medi = document.getElementById("medi").value;
+  } else {
+    my_trip.medi = "False";
+  }
+
+  if (document.getElementById("balt").checked) {
+    my_trip.balt = document.getElementById("balt").value;
+  } else {
+    my_trip.balt = "False";
+  }
+
+  document.getElementById("tripOutput").innerHTML =
+    JSON.stringify(my_trip);
+}
+
+function updateTrip() {
+
+  var start = document.getElementById("startCity").value;
+  var end = document.getElementById("endCity").value;
+
+  my_trip["startCity"] = start;
+  my_trip["endCity"] = end;
+
+  document.getElementById("tripOutput").innerHTML =
+    JSON.stringify(my_trip);
+}
+
+</script>
+
+</body>
+</html>
