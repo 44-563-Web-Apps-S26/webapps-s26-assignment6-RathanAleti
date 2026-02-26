@@ -26,6 +26,13 @@
 <button type="button" onclick="doTax()">Show tax table</button>
 
 </form>
+<form>
+  <input type="radio" name="operation" value="exponent" onclick="chooseOp()"> power
+  <input type="radio" name="operation" value="add" onclick="chooseOp()"> sum
+  <input type="radio" name="operation" value="mod" onclick="chooseOp()"> mod
+</form>
+
+<p id="radioResult"></p>
 
 <p id="taxOutput"></p>
 
@@ -60,6 +67,35 @@ function doTax() {
     "Taxes are: " + taxTable;
 }
 
+
+function chooseOp() {
+
+  var income = Number(document.getElementById("income").value);
+  var baseRate = Number(document.getElementById("baseRate").value);
+
+  var radios = document.getElementsByName("operation");
+  var result;
+
+  for (var i = 0; i < radios.length; i++) {
+    if (radios[i].checked) {
+
+      if (radios[i].value === "exponent") {
+        result = income ** baseRate;
+      }
+
+      if (radios[i].value === "add") {
+        result = income + baseRate;
+      }
+
+      if (radios[i].value === "mod") {
+        result = income % baseRate;
+      }
+    }
+  }
+
+  document.getElementById("radioResult").innerHTML =
+    "Result is: " + result;
+}
 </script>
 
 </body>
